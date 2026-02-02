@@ -1,90 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Papola Babu</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Papola Babu</title>
     <style>
-        body { background: #fff0f3; font-family: sans-serif; text-align: center; color: #c9184a; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: white; padding: 25px; border-radius: 20px; border: 1px solid #ffb3c1; width: 100%; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        body { background: #fff0f3 !important; font-family: sans-serif; text-align: center; color: #c9184a; margin: 0; padding: 15px; }
+        .card { background: white; padding: 20px; border-radius: 20px; border: 2px solid #ffb3c1; max-width: 380px; margin: 50px auto; display: block; }
         .hidden { display: none !important; }
-        .btn { background: #ff4d6d; color: white; border: none; padding: 15px; border-radius: 50px; width: 100%; font-weight: bold; margin-top: 10px; cursor: pointer; display: block; }
-        .opt { background: #f8f9fa; color: #c9184a; border: 1px solid #ffb3c1; padding: 12px; border-radius: 10px; width: 100%; margin-bottom: 8px; cursor: pointer; }
-        .letter { text-align: left; font-style: italic; font-size: 14px; line-height: 1.6; background: #fffafa; padding: 15px; border-left: 4px solid #ff4d6d; }
-        .gallery img { width: 45%; border-radius: 10px; margin: 2%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .heart { position: fixed; top: -10vh; font-size: 20px; animation: fall 4s linear forwards; }
-        @keyframes fall { to { transform: translateY(110vh); } }
+        button { background: #ff4d6d; color: white; border: none; padding: 15px; border-radius: 10px; width: 100%; font-weight: bold; margin-top: 10px; cursor: pointer; font-size: 16px; }
+        .opt-btn { background: #fff; color: #c9184a; border: 1px solid #ffb3c1; margin-bottom: 10px; }
+        .letter { text-align: left; font-size: 14px; line-height: 1.6; background: #fffafa; padding: 15px; border-left: 4px solid #ff4d6d; }
+        .img-grid { display: flex; flex-wrap: wrap; justify-content: space-around; margin: 15px 0; }
+        .img-grid img { width: 45%; border-radius: 8px; margin-bottom: 10px; border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        #heart-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; }
+        .heart { position: absolute; font-size: 20px; animation: fall 4s linear infinite; }
+        @keyframes fall { to { transform: translateY(100vh); } }
     </style>
 </head>
 <body>
 
-    <div id="s1" class="card">
-        <h1>Welcome ❤️</h1>
-        <p>Hi Papola Babu, welcome to the month we first met. I have a surprise for you!</p>
-        <button class="btn" onclick="show(2)">Start the Journey</button>
+    <div id="heart-wrap"></div>
+
+    <div id="p1" class="card">
+        <h1>Hi Papola Babu! ❤️</h1>
+        <p>Welcome to the month we first met. I made this journey just for you.</p>
+        <button onclick="go(2)">Open My Heart</button>
     </div>
 
-    <div id="s2" class="card hidden">
-        <h1>Question 1</h1>
+    <div id="p2" class="card hidden">
+        <h2>Question 1</h2>
         <p>What does our relationship mean to you?</p>
-        <button class="opt" onclick="ans(1, 'Understood', 3)">A place where I feel understood</button>
-        <button class="opt" onclick="ans(1, 'Peace', 3)">A bond that gives me peace</button>
-        <button class="opt" onclick="ans(1, 'Future', 3)">A future I’m choosing every day</button>
-        <button class="opt" onclick="ans(1, 'All', 3)">All of the above</button>
+        <button class="opt-btn" onclick="save(1,'Understood',3)">A place where I feel understood</button>
+        <button class="opt-btn" onclick="save(1,'Peace',3)">A bond that gives me peace</button>
+        <button class="opt-btn" onclick="save(1,'Future',3)">A future I’m choosing every day</button>
     </div>
 
-    <div id="s3" class="card hidden">
-        <h1>Question 2</h1>
+    <div id="p3" class="card hidden">
+        <h2>Question 2</h2>
         <p>What keeps us strong?</p>
-        <button class="opt" onclick="ans(2, 'Trust', 4)">Trust and honesty</button>
-        <button class="opt" onclick="ans(2, 'Connection', 4)">Emotional connection</button>
-        <button class="opt" onclick="ans(2, 'Shared Values', 4)">Shared values</button>
-        <button class="opt" onclick="ans(2, 'Effort', 4)">The effort we both make</button>
+        <button class="opt-btn" onclick="save(2,'Trust',4)">Trust and honesty</button>
+        <button class="opt-btn" onclick="save(2,'Connection',4)">Emotional connection</button>
+        <button class="opt-btn" onclick="save(2,'Effort',4)">The effort we both make</button>
     </div>
 
-    <div id="s4" class="card hidden">
-        <h1>Question 3</h1>
-        <h1>Future?</h1>
-        <button class="opt" onclick="ans(3, 'Calm', 5)">Calm and certainty</button>
-        <button class="opt" onclick="ans(3, 'Excitement', 5)">Hope and excitement</button>
-        <button class="opt" onclick="ans(3, 'Gratitude', 5)">Gratitude</button>
-        <button class="opt" onclick="ans(3, 'Confidence', 5)">Confidence</button>
+    <div id="p4" class="card hidden">
+        <h2>Question 3</h2>
+        <p>Future feelings?</p>
+        <button class="opt-btn" onclick="save(3,'Calm',5)">Calm and certainty</button>
+        <button class="opt-btn" onclick="save(3,'Excitement',5)">Hope and excitement</button>
+        <button class="opt-btn" onclick="save(3,'Confidence',5)">Confidence</button>
     </div>
 
-    <div id="s5" class="card hidden">
-        <h1>My Love,</h1>
+    <div id="p5" class="card hidden">
+        <h2>My Love,</h2>
         <div class="letter">
-            Being far from you has taught me one thing clearly — distance can never touch what we share. Even miles apart, you live in my smallest thoughts and my biggest dreams.<br><br>
-            I miss you in ways words can’t explain. You are my comfort, my happiness, and my forever.<br><br>
+            Distance can never touch what we share. Even miles apart, you live in my smallest thoughts and my biggest dreams. I love you in ways that need no explanation. You are my forever.<br><br>
             <strong>With all my love, Mohammed ❤️</strong>
         </div>
-        <div class="gallery">
+        <div class="img-grid">
             <img src="photo1.jpg"> <img src="photo2.jpg">
             <img src="photo3.jpg"> <img src="photo4.jpg">
         </div>
-        <button class="btn" onclick="send()">Send Answers to Mohammed 📱</button>
+        <button onclick="send()">Tell Mohammed I Finished! 📱</button>
     </div>
 
     <script>
-        let data = {};
-        function show(n) {
-            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
-            document.getElementById('s' + n).classList.remove('hidden');
-            if(n === 5) setInterval(() => {
-                const h = document.createElement('div');
-                h.className = 'heart'; h.innerHTML = '❤️';
-                h.style.left = Math.random() * 100 + 'vw';
-                document.body.appendChild(h);
-                setTimeout(() => h.remove(), 4000);
-            }, 300);
+        var store = {};
+        
+        function go(step) {
+            // Hide everything
+            var cards = document.getElementsByClassName('card');
+            for(var i=0; i<cards.length; i++) {
+                cards[i].classList.add('hidden');
+            }
+            // Show target
+            document.getElementById('p' + step).classList.remove('hidden');
+            
+            if(step === 5) {
+                setInterval(function(){
+                    var h = document.createElement('div');
+                    h.className = 'heart'; h.innerHTML = '❤️';
+                    h.style.left = Math.random() * 100 + 'vw';
+                    document.getElementById('heart-wrap').appendChild(h);
+                    setTimeout(function(){ h.remove(); }, 4000);
+                }, 400);
+            }
         }
-        function ans(q, a, n) {
-            data['q'+q] = a;
-            show(n);
+
+        function save(q, val, next) {
+            store['q'+q] = val;
+            go(next);
         }
+
         function send() {
-            const msg = `Babu, I finished it! ❤️%0A1. ${data.q1}%0A2. ${data.q2}%0A3. ${data.q3}`;
-            window.open(`https://wa.me/971524801453?text=${msg}`);
+            var m = "Babu, I finished it! ❤️%0A1: "+(store.q1||"Done")+"%0A2: "+(store.q2||"Done")+"%0A3: "+(store.q3||"Done");
+            window.location.href = "https://wa.me/971524801453?text=" + m;
         }
     </script>
 </body>
