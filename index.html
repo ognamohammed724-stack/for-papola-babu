@@ -6,7 +6,7 @@
     <title>For My Papola Babu</title>
     <style>
         body { background: #fff0f3; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; color: #c9184a; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow-x: hidden; }
-        .card { background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(201, 24, 74, 0.1); width: 85%; max-width: 550px; z-index: 10; position: relative; border: 1px solid #ffb3c1; margin: 20px auto; transition: 0.5s; }
+        .card { background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(201, 24, 74, 0.1); width: 85%; max-width: 550px; z-index: 10; position: relative; border: 1px solid #ffb3c1; margin: 20px auto; }
         .hidden { display: none !important; }
         h1 { font-size: 28px; margin-bottom: 20px; color: #a4133c; font-weight: bold; }
         p { font-size: 18px; line-height: 1.6; color: #555; margin-bottom: 25px; }
@@ -19,7 +19,6 @@
 
         .next-btn { background-color: #ff4d6d; color: white; border: none; padding: 18px 30px; border-radius: 50px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; width: 100%; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3); }
         
-        /* The Layout for Letter and Photos side-by-side on larger screens */
         .final-content { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
         
         .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; min-width: 250px; }
@@ -41,4 +40,32 @@
     <div id="step2" class="card hidden">
         <h1>Question 1</h1>
         <p>What does our relationship mean to you?</p>
-        <button class="option-btn" onclick="saveData(1, 'A place where I feel understood', 3)">A place where I feel
+        <button class="option-btn" onclick="saveData(1, 'A place where I feel understood', 3)">A place where I feel understood</button>
+        <button class="option-btn" onclick="saveData(1, 'A bond that gives me peace', 3)">A bond that gives me peace</button>
+        <button class="option-btn" onclick="saveData(1, 'A future I’m choosing every day', 3)">A future I’m choosing every day</button>
+    </div>
+
+    <div id="step3" class="card hidden">
+        <h1>Question 2</h1>
+        <p>Despite the distance, what keeps us strong?</p>
+        <button class="option-btn" onclick="saveData(2, 'Trust and honesty', 4)">Trust and honesty</button>
+        <button class="option-btn" onclick="saveData(2, 'Emotional connection', 4)">Emotional connection</button>
+        <button class="option-btn" onclick="saveData(2, 'The effort we both make', 4)">The effort we both make</button>
+    </div>
+
+    <div id="step4" class="card hidden">
+        <h1>Question 3</h1>
+        <p>When you think about our future, what do you feel most?</p>
+        <button class="option-btn" onclick="saveData(3, 'Calm and certainty', 5)">Calm and certainty</button>
+        <button class="option-btn" onclick="saveData(3, 'Hope and excitement', 5)">Hope and excitement</button>
+        <button class="option-btn" onclick="saveData(3, 'Confidence that we’ll make it work', 5)">Confidence that we’ll make it work</button>
+    </div>
+
+    <div id="step5" class="card hidden" style="max-width: 800px;">
+        <div class="bouquet">💐🌷🌹</div>
+        <h1>My Love,</h1>
+        
+        <div class="final-content">
+            <div class="letter-text">
+                Being far from you has taught me one thing very clearly — distance can never touch what we share. Even miles apart, you live in my smallest thoughts and my biggest dreams. Every day, I find pieces of you in everything I do.<br><br>
+                I miss you in ways words can’t fully explain, but I love you in ways that need
