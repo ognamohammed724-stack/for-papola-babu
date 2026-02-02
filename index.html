@@ -69,20 +69,28 @@
 
     <script>
         let answers = {};
+
         function nextStep(step) {
             document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
-            document.getElementById('step' + step).classList.remove('hidden');
+            const nextCard = document.getElementById('step' + step);
+            if (nextCard) {
+                nextCard.classList.remove('hidden');
+            }
             if(step === 5) setInterval(createHeart, 300);
         }
+
         function saveAns(qNum, val) {
             answers['q' + qNum] = val;
+            // Move to the next numerical step immediately
             nextStep(qNum + 1);
         }
+
         function sendToWhatsApp() {
             const myNumber = "971524801453"; 
             const message = `Babu, I finished your surprise! ❤️%0A%0A1. Relationship: ${answers.q1}%0A2. Strength: ${answers.q2}%0A3. Future: ${answers.q3}`;
             window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
         }
+
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart'); heart.innerHTML = '❤️';
