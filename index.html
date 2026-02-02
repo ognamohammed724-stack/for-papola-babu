@@ -7,10 +7,10 @@
     <style>
         body { background: #fff0f3; font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; color: #c9184a; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow-x: hidden; }
         .card { background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(201, 24, 74, 0.1); width: 85%; max-width: 500px; z-index: 10; position: relative; border: 1px solid #ffb3c1; }
-        .hidden { display: none; }
+        .hidden { display: none !important; } /* Added !important to force hidden */
         h1 { font-size: 24px; margin-bottom: 20px; color: #a4133c; }
         p { font-size: 17px; line-height: 1.6; color: #555; margin-bottom: 20px; }
-        .option-btn { background: #f8f9fa; color: #c9184a; border: 2px solid #ffb3c1; padding: 12px; border-radius: 15px; width: 100%; margin-bottom: 10px; cursor: pointer; text-align: center; font-size: 15px; transition: 0.3s; font-weight: 500; }
+        .option-btn { background: #f8f9fa; color: #c9184a; border: 2px solid #ffb3c1; padding: 12px; border-radius: 15px; width: 100%; margin-bottom: 10px; cursor: pointer; text-align: center; font-size: 15px; transition: 0.3s; font-weight: 500; display: block; }
         .option-btn:hover { background: #ffb3c1; color: white; border-color: #ff85a1; }
         .letter-text { font-style: italic; text-align: left; background: #fffafa; padding: 20px; border-radius: 15px; line-height: 1.8; color: #444; border-left: 5px solid #ff4d6d; font-size: 15px; }
         .bouquet { font-size: 60px; margin-bottom: 10px; }
@@ -25,34 +25,34 @@
         <div style="font-size: 40px;">🗓️❤️</div>
         <h1>Welcome to the Valentine month that we met!</h1>
         <p>Hi Papola Babu, since this is the month our journey began, I wanted to take you on a little trip through my heart.</p>
-        <button class="next-btn" onclick="nextStep(2)">Start the Journey</button>
+        <button class="next-btn" onclick="goToStep(2)">Start the Journey</button>
     </div>
 
     <div id="step2" class="card hidden">
         <h1>Question 1</h1>
         <p>What does our relationship mean to you?</p>
-        <button class="option-btn" onclick="saveAns(1, 'A place where I feel understood')">A place where I feel understood</button>
-        <button class="option-btn" onclick="saveAns(1, 'A bond that gives me peace')">A bond that gives me peace</button>
-        <button class="option-btn" onclick="saveAns(1, 'A future I’m choosing every day')">A future I’m choosing every day</button>
-        <button class="option-btn" onclick="saveAns(1, 'All of the above')">All of the above</button>
+        <button class="option-btn" onclick="recordAnswer(1, 'A place where I feel understood', 3)">A place where I feel understood</button>
+        <button class="option-btn" onclick="recordAnswer(1, 'A bond that gives me peace', 3)">A bond that gives me peace</button>
+        <button class="option-btn" onclick="recordAnswer(1, 'A future I’m choosing every day', 3)">A future I’m choosing every day</button>
+        <button class="option-btn" onclick="recordAnswer(1, 'All of the above', 3)">All of the above</button>
     </div>
 
     <div id="step3" class="card hidden">
         <h1>Question 2</h1>
         <p>Despite the distance, what keeps us strong?</p>
-        <button class="option-btn" onclick="saveAns(2, 'Trust and honesty')">Trust and honesty</button>
-        <button class="option-btn" onclick="saveAns(2, 'Emotional connection')">Emotional connection</button>
-        <button class="option-btn" onclick="saveAns(2, 'Shared values and goals')">Shared values and goals</button>
-        <button class="option-btn" onclick="saveAns(2, 'The effort we both make')">The effort we both make</button>
+        <button class="option-btn" onclick="recordAnswer(2, 'Trust and honesty', 4)">Trust and honesty</button>
+        <button class="option-btn" onclick="recordAnswer(2, 'Emotional connection', 4)">Emotional connection</button>
+        <button class="option-btn" onclick="recordAnswer(2, 'Shared values and goals', 4)">Shared values and goals</button>
+        <button class="option-btn" onclick="recordAnswer(2, 'The effort we both make', 4)">The effort we both make</button>
     </div>
 
     <div id="step4" class="card hidden">
         <h1>Question 3</h1>
         <p>When you think about our future, what do you feel most?</p>
-        <button class="option-btn" onclick="saveAns(3, 'Calm and certainty')">Calm and certainty</button>
-        <button class="option-btn" onclick="saveAns(3, 'Hope and excitement')">Hope and excitement</button>
-        <button class="option-btn" onclick="saveAns(3, 'Gratitude for what we have')">Gratitude for what we have</button>
-        <button class="option-btn" onclick="saveAns(3, 'Confidence that we’ll make it work')">Confidence that we’ll make it work</button>
+        <button class="option-btn" onclick="recordAnswer(3, 'Calm and certainty', 5)">Calm and certainty</button>
+        <button class="option-btn" onclick="recordAnswer(3, 'Hope and excitement', 5)">Hope and excitement</button>
+        <button class="option-btn" onclick="recordAnswer(3, 'Gratitude for what we have', 5)">Gratitude for what we have</button>
+        <button class="option-btn" onclick="recordAnswer(3, 'Confidence that we’ll make it work', 5)">Confidence that we’ll make it work</button>
     </div>
 
     <div id="step5" class="card hidden">
@@ -64,40 +64,50 @@
             Until the day I can hold your hand and say this in person, know this: my heart has already chosen you, today and always.<br><br>
             <center><strong>With all my love, Mohammed ❤️</strong></center>
         </div>
-        <button class="next-btn" onclick="sendToWhatsApp()">Send my answers to Mohammed 📱</button>
+        <button class="next-btn" onclick="sendWhatsApp()">Send my answers to Mohammed 📱</button>
     </div>
 
     <script>
-        let answers = {};
+        let userAnswers = {};
 
-        function nextStep(step) {
-            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
-            const nextCard = document.getElementById('step' + step);
-            if (nextCard) {
-                nextCard.classList.remove('hidden');
+        function goToStep(stepNumber) {
+            // Hide all cards
+            const allCards = document.getElementsByClassName('card');
+            for (let i = 0; i < allCards.length; i++) {
+                allCards[i].classList.add('hidden');
             }
-            if(step === 5) setInterval(createHeart, 300);
+            
+            // Show the specific step
+            const targetCard = document.getElementById('step' + stepNumber);
+            if (targetCard) {
+                targetCard.classList.remove('hidden');
+            }
+
+            // Start hearts if final step
+            if (stepNumber === 5) {
+                setInterval(spawnHeart, 300);
+            }
         }
 
-        function saveAns(qNum, val) {
-            answers['q' + qNum] = val;
-            // Move to the next numerical step immediately
-            nextStep(qNum + 1);
+        function recordAnswer(questionId, answerValue, nextStepId) {
+            userAnswers['q' + questionId] = answerValue;
+            goToStep(nextStepId);
         }
 
-        function sendToWhatsApp() {
-            const myNumber = "971524801453"; 
-            const message = `Babu, I finished your surprise! ❤️%0A%0A1. Relationship: ${answers.q1}%0A2. Strength: ${answers.q2}%0A3. Future: ${answers.q3}`;
-            window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+        function sendWhatsApp() {
+            const phoneNumber = "971524801453"; 
+            const textBody = `Babu, I finished your surprise! ❤️%0A%0A1. Relationship: ${userAnswers.q1}%0A2. Strength: ${userAnswers.q2}%0A3. Future: ${userAnswers.q3}`;
+            window.open(`https://wa.me/${phoneNumber}?text=${textBody}`, '_blank');
         }
 
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart'); heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
+        function spawnHeart() {
+            const h = document.createElement('div');
+            h.classList.add('heart'); 
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(h);
+            setTimeout(() => { h.remove(); }, 5000);
         }
     </script>
 </body>
