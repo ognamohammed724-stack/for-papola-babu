@@ -1,68 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Papola Babu</title>
+    <title>For Papola Babu</title>
     <style>
-        body { background: #fff0f3; font-family: 'Segoe UI', sans-serif; text-align: center; color: #c9184a; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow-x: hidden; }
-        .card { background: white; padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(201, 24, 74, 0.1); width: 85%; max-width: 450px; z-index: 10; position: relative; border: 1px solid #ffb3c1; margin: 20px 0; }
+        body { background: #fff0f3; font-family: sans-serif; text-align: center; color: #c9184a; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { background: white; padding: 25px; border-radius: 20px; border: 1px solid #ffb3c1; width: 100%; max-width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .hidden { display: none !important; }
-        h1 { font-size: 22px; margin-bottom: 15px; color: #a4133c; }
-        p { font-size: 16px; line-height: 1.5; color: #555; }
-        
-        .option-btn { background: #f8f9fa; color: #c9184a; border: 2px solid #ffb3c1; padding: 12px; border-radius: 15px; width: 100%; margin-bottom: 10px; cursor: pointer; font-size: 14px; transition: 0.3s; display: block; }
-        .option-btn:hover { background: #ffb3c1; color: white; }
-
-        .letter-text { font-style: italic; text-align: left; background: #fffafa; padding: 18px; border-radius: 15px; line-height: 1.7; color: #444; border-left: 5px solid #ff4d6d; font-size: 14px; margin-bottom: 20px; }
-        
-        /* The Photo Gallery */
-        .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
-        .gallery img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transform: rotate(-2deg); }
-        .gallery img:nth-child(even) { transform: rotate(2deg); }
-
-        .next-btn { background-color: #ff4d6d; color: white; border: none; padding: 15px; border-radius: 50px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
-        .heart { position: fixed; top: -10vh; font-size: 20px; z-index: 1; animation: fall linear forwards; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        .btn { background: #ff4d6d; color: white; border: none; padding: 15px; border-radius: 50px; width: 100%; font-weight: bold; margin-top: 10px; cursor: pointer; display: block; }
+        .opt { background: #f8f9fa; color: #c9184a; border: 1px solid #ffb3c1; padding: 12px; border-radius: 10px; width: 100%; margin-bottom: 8px; cursor: pointer; }
+        .letter { text-align: left; font-style: italic; font-size: 14px; line-height: 1.6; background: #fffafa; padding: 15px; border-left: 4px solid #ff4d6d; }
+        .gallery img { width: 45%; border-radius: 10px; margin: 2%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .heart { position: fixed; top: -10vh; font-size: 20px; animation: fall 4s linear forwards; }
+        @keyframes fall { to { transform: translateY(110vh); } }
     </style>
 </head>
 <body>
 
-    <div id="step1" class="card">
-        <h1>Welcome to the Valentine month that we met!</h1>
-        <p>Hi Papola Babu, since this is the month our journey began, I wanted to take you on a little trip through my heart.</p>
-        <button class="next-btn" onclick="goToStep(2)">Start the Journey ❤️</button>
+    <div id="s1" class="card">
+        <h1>Welcome ❤️</h1>
+        <p>Hi Papola Babu, welcome to the month we first met. I have a surprise for you!</p>
+        <button class="btn" onclick="show(2)">Start the Journey</button>
     </div>
 
-    <div id="step2" class="card hidden">
+    <div id="s2" class="card hidden">
         <h1>Question 1</h1>
         <p>What does our relationship mean to you?</p>
-        <button class="option-btn" onclick="recordAns(1, 'A place where I feel understood', 3)">A place where I feel understood</button>
-        <button class="option-btn" onclick="recordAns(1, 'A bond that gives me peace', 3)">A bond that gives me peace</button>
-        <button class="option-btn" onclick="recordAns(1, 'A future I’m choosing every day', 3)">A future I’m choosing every day</button>
-        <button class="option-btn" onclick="recordAns(1, 'All of the above', 3)">All of the above</button>
+        <button class="opt" onclick="ans(1, 'Understood', 3)">A place where I feel understood</button>
+        <button class="opt" onclick="ans(1, 'Peace', 3)">A bond that gives me peace</button>
+        <button class="opt" onclick="ans(1, 'Future', 3)">A future I’m choosing every day</button>
+        <button class="opt" onclick="ans(1, 'All', 3)">All of the above</button>
     </div>
 
-    <div id="step3" class="card hidden">
+    <div id="s3" class="card hidden">
         <h1>Question 2</h1>
-        <p>Despite the distance, what keeps us strong?</p>
-        <button class="option-btn" onclick="recordAns(2, 'Trust and honesty', 4)">Trust and honesty</button>
-        <button class="option-btn" onclick="recordAns(2, 'Emotional connection', 4)">Emotional connection</button>
-        <button class="option-btn" onclick="recordAns(2, 'Shared values and goals', 4)">Shared values and goals</button>
-        <button class="option-btn" onclick="recordAns(2, 'The effort we both make', 4)">The effort we both make</button>
+        <p>What keeps us strong?</p>
+        <button class="opt" onclick="ans(2, 'Trust', 4)">Trust and honesty</button>
+        <button class="opt" onclick="ans(2, 'Connection', 4)">Emotional connection</button>
+        <button class="opt" onclick="ans(2, 'Shared Values', 4)">Shared values</button>
+        <button class="opt" onclick="ans(2, 'Effort', 4)">The effort we both make</button>
     </div>
 
-    <div id="step4" class="card hidden">
+    <div id="s4" class="card hidden">
         <h1>Question 3</h1>
-        <p>When you think about our future, what do you feel most?</p>
-        <button class="option-btn" onclick="recordAns(3, 'Calm and certainty', 5)">Calm and certainty</button>
-        <button class="option-btn" onclick="recordAns(3, 'Hope and excitement', 5)">Hope and excitement</button>
-        <button class="option-btn" onclick="recordAns(3, 'Gratitude for what we have', 5)">Gratitude for what we have</button>
-        <button class="option-btn" onclick="recordAns(3, 'Confidence that we’ll make it work', 5)">Confidence that we’ll make it work</button>
+        <h1>Future?</h1>
+        <button class="opt" onclick="ans(3, 'Calm', 5)">Calm and certainty</button>
+        <button class="opt" onclick="ans(3, 'Excitement', 5)">Hope and excitement</button>
+        <button class="opt" onclick="ans(3, 'Gratitude', 5)">Gratitude</button>
+        <button class="opt" onclick="ans(3, 'Confidence', 5)">Confidence</button>
     </div>
 
-    <div id="step5" class="card hidden">
-        <div style="font-size: 50px;">💐</div>
+    <div id="s5" class="card hidden">
         <h1>My Love,</h1>
-        <div class="letter-text">
-            Being far from you has taught me one thing very clearly — distance can never touch what we share. Even miles apart, you live in my smallest thoughts and my biggest dreams. Every day, I find pieces of you in everything I do.<br
+        <div class="letter">
+            Being far from you has taught me one thing clearly — distance can never touch what we share. Even miles apart, you live in my smallest thoughts and my biggest dreams.<br><br>
+            I miss you in ways words can’t explain. You are my comfort, my happiness, and my forever.<br><br>
+            <strong>With all my love, Mohammed ❤️</strong>
+        </div>
+        <div class="gallery">
+            <img src="photo1.jpg"> <img src="photo2.jpg">
+            <img src="photo3.jpg"> <img src="photo4.jpg">
+        </div>
+        <button class="btn" onclick="send()">Send Answers to Mohammed 📱</button>
+    </div>
+
+    <script>
+        let data = {};
+        function show(n) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('s' + n).classList.remove('hidden');
+            if(n === 5) setInterval(() => {
+                const h = document.createElement('div');
+                h.className = 'heart'; h.innerHTML = '❤️';
+                h.style.left = Math.random() * 100 + 'vw';
+                document.body.appendChild(h);
+                setTimeout(() => h.remove(), 4000);
+            }, 300);
+        }
+        function ans(q, a, n) {
+            data['q'+q] = a;
+            show(n);
+        }
+        function send() {
+            const msg = `Babu, I finished it! ❤️%0A1. ${data.q1}%0A2. ${data.q2}%0A3. ${data.q3}`;
+            window.open(`https://wa.me/971524801453?text=${msg}`);
+        }
+    </script>
+</body>
+</html>
